@@ -1,0 +1,6 @@
+cobo:
+  apiSecret: 1234
+
+bitfye:
+  generator:
+    prefix: bitfye-wallet

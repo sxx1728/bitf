@@ -1,0 +1,4 @@
+com/bitfye/common/model/dto/WithDrawDto.class
+com/bitfye/common/model/po/WithDrawPo.class
+com/bitfye/common/model/vo/NewAddressReqVo.class
+com/bitfye/common/model/vo/WithdrawReqVo.class
