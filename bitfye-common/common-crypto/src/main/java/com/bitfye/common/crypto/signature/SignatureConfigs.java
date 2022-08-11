@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@ConfigurationProperties("huobi.security")
+@ConfigurationProperties("bitfye.security")
 public class SignatureConfigs {
     private Map<String, SignatureConfig> signatures = new HashMap();
 

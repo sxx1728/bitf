@@ -32,12 +32,13 @@ cobo:
 bitfye:
   generator:
     prefix: bitfye-risk
-  wallet:
-    host: http://127.0.0.1:8082
-    appId: 123456
-    appKey: 123456
-    url:
-      createAddress: /v1/wallet/new_address
+  security:
+    wallet:
+      host: http://127.0.0.1:8082
+      appId: 1OTLHR7UIDDFC1QAG5YG
+      appKey: Mk1Oqf7buibn5OQPPLw6OgWe9PyqbmRrqm20Z2lG
+      url:
+        createAddress: /v1/wallet/new_address
 
 redisson:
   address: redis://127.0.0.1:6379

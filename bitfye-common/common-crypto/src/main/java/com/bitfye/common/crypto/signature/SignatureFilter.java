@@ -3,7 +3,9 @@ package com.bitfye.common.crypto.signature;
 import com.bitfye.common.crypto.http.ErrorHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

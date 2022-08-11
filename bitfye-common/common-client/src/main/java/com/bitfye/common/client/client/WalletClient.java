@@ -32,13 +32,13 @@ import java.util.Set;
 @Component
 public class WalletClient {
 
-    @Value("${bitfye.wallet.host:}")
+    @Value("${bitfye.security.wallet.host:}")
     private String walletHost;
-    @Value("${bitfye.wallet.appId:}")
+    @Value("${bitfye.security.wallet.appId:}")
     private String walletAppId;
-    @Value("${bitfye.wallet.appKey:}")
+    @Value("${bitfye.security.wallet.appKey:}")
     private String walletAppKey;
-    @Value("${bitfye.wallet.url.createAddress}")
+    @Value("${bitfye.security.wallet.url.createAddress}")
     private String createAddress;
 
     @Autowired
