@@ -5,6 +5,25 @@ spring:
   application:
     name: bitfye-risk
   profiles: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/bitfye?allowMultiQueries=true&useSSL=false
+    username: root
+    password: 123456
+    # 初始化，最小，最大连接数
+    initialSize: 20
+    minIdle: 20
+    maxActive: 200
+    # 获取数据库连接等待的超时时间
+    maxWait: 60000
+    # 配置多久进行一次检测，检测需要关闭的空闲连接 单位毫秒
+    validationQuery: SELECT 'x'
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    druid:
+      web-stat-filter:
+        session-stat-enable: false
+
 
 cobo:
   apiKey: 032730060f719d7251f6530e0027a2ed2c6e78b09dbcb7e841444d950caa5caf53

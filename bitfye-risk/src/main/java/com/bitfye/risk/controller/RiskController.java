@@ -28,7 +28,7 @@ public class RiskController {
     private CoboClient coboClient;
 
     @ApiOperation("生成充币地址-调用钱包服务")
-    @PostMapping("withdraw")
+    @PostMapping("createAddress")
     public ResultVo createAddress(@Validated @RequestBody NewAddressReqVo reqVo) {
         ResultVo<Boolean> result = walletClient.createAddress(reqVo.getCoin());
         if(result.getSuccess()) {
