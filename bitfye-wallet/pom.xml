@@ -70,6 +70,14 @@
             <groupId>com.github.CoboCustody</groupId>
             <artifactId>cobo-java-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.bitfye</groupId>
+            <artifactId>common-crypto</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

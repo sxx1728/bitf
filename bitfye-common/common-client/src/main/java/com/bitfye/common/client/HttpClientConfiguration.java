@@ -11,13 +11,13 @@ import org.springframework.context.annotation.Lazy;
 public class HttpClientConfiguration {
 
 
-    @Bean("brokerHttpConfig")
+    @Bean("riskHttpConfig")
     @ConfigurationProperties("bitfye.client.risk.http")
     public HttpClientConfig brokerHttpConfig() {
         return new HttpClientConfig("risk");
     }
 
-    @Bean("auditHttpConfig")
+    @Bean("walletHttpConfig")
     @ConfigurationProperties("bitfye.client.wallet.http")
     public HttpClientConfig auditHttpConfig() {
         return new HttpClientConfig("wallet");

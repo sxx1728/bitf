@@ -1,6 +1,5 @@
 package com.bitfye.wallet.controller;
 
-import com.bitfye.common.base.util.ResultVo;
 import com.bitfye.common.model.vo.NewAddressReqVo;
 import com.bitfye.common.model.vo.WithdrawReqVo;
 import com.bitfye.wallet.cobo.CoboClient;

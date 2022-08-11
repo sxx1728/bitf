@@ -18,6 +18,7 @@
         <module>common-snow-id</module>
         <module>common-model</module>
         <module>common-client</module>
+        <module>common-crypto</module>
     </modules>
 
 </project>
