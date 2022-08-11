@@ -1,4 +1,4 @@
-package com.bitfye.wallet.cobo;
+package com.bitfye.risk.cobo;
 
 import com.bitfye.common.model.vo.WithdrawReqVo;
 import com.cobo.custody.api.client.CoboApiClientFactory;

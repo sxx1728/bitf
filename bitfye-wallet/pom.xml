@@ -11,8 +11,12 @@
 
     <artifactId>bitfye-wallet</artifactId>
 
-
     <dependencies>
+        <!-- apollo客户端 -->
+<!--        <dependency>-->
+<!--            <groupId>com.ctrip.framework.apollo</groupId>-->
+<!--            <artifactId>apollo-client</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
@@ -50,12 +54,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.bitfye</groupId>
-            <artifactId>common-cobo</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
             <scope>compile</scope>
@@ -63,6 +61,10 @@
         <dependency>
             <groupId>com.bitfye</groupId>
             <artifactId>common-snow-id</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.CoboCustody</groupId>
+            <artifactId>cobo-java-api</artifactId>
         </dependency>
     </dependencies>
 

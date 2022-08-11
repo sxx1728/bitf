@@ -1,12 +1,13 @@
 package com.bitfye.wallet.controller;
 
 import com.bitfye.common.base.util.ResultVo;
-import com.bitfye.common.cobo.api.CoboClient;
 import com.bitfye.common.model.vo.NewAddressReqVo;
 import com.bitfye.common.model.vo.WithdrawReqVo;
+import com.bitfye.wallet.cobo.CoboClient;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.Address;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,30 +25,33 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RestController
 @RequestMapping("/v1/wallet/")
+@Slf4j
 public class WalletController {
 
     @Autowired
     private CoboClient coboClient;
 
     @ApiOperation("生成充币地址")
-    @PostMapping("/new_address")
-    public ResultVo newAddress(@Validated @RequestBody NewAddressReqVo reqVo, HttpServletRequest request) {
-        ApiResponse<Address> address = coboClient.getNewDepositAddress(reqVo.getCoin());
-        return ResultVo.buildSuccess(address.getResult());
+    @PostMapping("new_address")
+    public ApiResponse<Address> newAddress(@Validated @RequestBody NewAddressReqVo reqVo, HttpServletRequest request) {
+        ApiResponse<Address> result = coboClient.getNewDepositAddress(reqVo.getCoin());
+        log.info("coin:{} address:{}", result.getResult().getCoin(), result.getResult().getAddress());
+        ApiResponse<Boolean> result1 = coboClient.verifyValidAddress(result.getResult().getCoin(), result.getResult().getAddress());
+        log.info("newAddress result1:{}", result1);
+        return result;
     }
 
     @ApiOperation("提币")
-    @PostMapping("/withdraw")
-    public ResultVo withdraw(@Validated @RequestBody WithdrawReqVo reqVo) {
-
-        coboClient.submitWithdrawRequest(reqVo);
-        return new ResultVo();
+    @PostMapping("withdraw")
+    public ApiResponse<String> withdraw(@Validated @RequestBody WithdrawReqVo reqVo) {
+        ApiResponse<String> result = coboClient.submitWithdrawRequest(reqVo);
+        return result;
     }
 
     @ApiOperation("充值")
-    @PostMapping("/deposit")
-    public ResultVo deposit(String coin) {
-        ApiResponse<Address> address = coboClient.getNewDepositAddress(coin);
-        return new ResultVo();
+    @PostMapping("deposit")
+    public ApiResponse<Address> deposit(@Validated @RequestBody NewAddressReqVo reqVo) {
+        ApiResponse<Address> result = coboClient.batchNewDepositAddress(reqVo.getCoin());
+        return result;
     }
 }

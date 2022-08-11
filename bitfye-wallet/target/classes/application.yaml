@@ -1,6 +1,60 @@
+## OPS need info to do health check, please discuss with OPS before changing them.
+#info:
+#  app:
+#    name: ${APP_NAME:bitfye-wallet}
+#    check: ${APP_CHECK:NOT_SET}
+#  env:
+#    name: ${ENV_NAME:NOT_SET}
+#  hostname: ${HOSTNAME:NOT_SET}
+#  captain:
+#    seq: ${CAPTAIN_SEQ:NOT_SET}
+#    gen: ${CAPTAIN_GEN:NOT_SET}
+#  build:
+#    name: ${BUILD_APP_NAME:NOT_SET}
+#    git:
+#      version: ${BUILD_GIT_VERSION:NOT_SET}
+#      hash: ${BUILD_GIT_HASH:NOT_SET}
+#    time: ${BUILD_TIME:NOT_SET}
+#    timestamp: ${BUILD_TIMESTAMP:NOT_SET}
+#
+#spring:
+#  application:
+#    name: ${PROJECT:bitfye-wallet}
+#  profiles:
+#    active: ${ENV_NAME:test-1}
+#    include:
+#      - ${ENV_PROFILE:default}
+
+#app:
+#  id: bitfye-wallet
+#apollo:
+#  meta: http://47.242.107.232:8080
+#  bootstrap:
+#    enabled: true
+#    eagerLoad:
+#      enabled: true
+#    namespaces: application.yaml
+#  cluster: default
+
+server:
+  port: 8082
+
+spring:
+  application:
+    name: bitfye-wallet
+  profiles: dev
+
+# 需要改造进行加密处理
 cobo:
-  apiSecret: 1234
+  apiKey: 032730060f719d7251f6530e0027a2ed2c6e78b09dbcb7e841444d950caa5caf53
+  apiSecret: a425cf8873d6b5bf35b76eba23a488b395f75b84179185949f23f233d12739fa
+
 
 bitfye:
   generator:
     prefix: bitfye-wallet
+
+redisson:
+  address: redis://127.0.0.1:6379
+  password:
+  database: 0

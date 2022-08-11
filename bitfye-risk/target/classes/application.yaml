@@ -1,0 +1,24 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: bitfye-risk
+  profiles: dev
+
+cobo:
+  apiKey: 032730060f719d7251f6530e0027a2ed2c6e78b09dbcb7e841444d950caa5caf53
+  apiSecret: a425cf8873d6b5bf35b76eba23a488b395f75b84179185949f23f233d12739fa
+
+bitfye:
+  generator:
+    prefix: bitfye-risk
+
+redisson:
+  address: redis://127.0.0.1:6379
+  password:
+  database: 0
+
+logging:
+  config: "classpath:logback-spring.xml"
+

@@ -4,21 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
-import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
-import org.redisson.config.ReadMode;
-import org.redisson.config.SentinelServersConfig;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
+import org.redisson.config.SingleServerConfig;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author ming.jia
@@ -31,53 +24,40 @@ import java.util.List;
 @Slf4j
 public class RedissonConfig {
 
-    @Autowired
-    RedisProperties redisProperties;
+    @Value("${redisson.address:redis://127.0.0.1:6379}")
+    String address;
 
-    @Configuration
-    @ConditionalOnClass({Redisson.class})
-    protected class RedissionSingleClientConfiguration {
+    @Value("${redisson.timeout:5000}")
+    int timeout;
 
-        /**
-         * 哨兵模式 redisson 客户端
-         * @return
-         */
+    @Value("${redisson.max.poolsize:50}")
+    int maxPoolSize;
 
-        @Bean
-        @ConditionalOnMissingClass
-        public RedissonClient RedissonClient() {
-            log.info("sentinel redisProperties:" + redisProperties.getSentinel());
-            Config config = new Config();
-            List<String> list = redisProperties.getSentinel().getNodes();
-            log.info("redission list={}",list);
-            String[] nodes = new String[list.size()];
-            list.toArray(nodes);
-            List<String> newNodes = new ArrayList(nodes.length);
-            Arrays.stream(nodes).forEach((index) -> newNodes.add(index.startsWith("redis://") ? index : "redis://" + index));
-            SentinelServersConfig serverConfig = config
-                    .useSentinelServers()
-                    .setIdleConnectionTimeout(10000)
-                    .setPingConnectionInterval(1000)
-                    .setConnectTimeout(10000)
-                    .setTimeout(3000)
-                    .setRetryAttempts(3)
-                    .setRetryInterval(1500)
-                    .addSentinelAddress(newNodes.toArray(new String[0]))
-                    .setMasterName(redisProperties.getSentinel().getMaster())
-                    .setReadMode(ReadMode.MASTER)
-                    .setSslEnableEndpointIdentification(false) //关闭SSL终端识别
-                    .setSubscriptionConnectionMinimumIdleSize(1)
-                    .setDnsMonitoringInterval(5000)
-                    .setSubscriptionsPerConnection(5)
-                    .setSubscriptionConnectionPoolSize(5)
-                    .setClientName("bitfye-wallet")
-                    .setMasterConnectionPoolSize(100)
-                    .setSlaveConnectionPoolSize(100);
-            if (StringUtils.isNotBlank(redisProperties.getPassword())) {
-                serverConfig.setPassword(redisProperties.getPassword());
-            }
-            config.setCodec(JsonJacksonCodec.INSTANCE);
-            return Redisson.create(config);
+    @Value("${redisson.min.idlesize:50}")
+    int minIdleSize;
+
+    @Value("${redisson.password:}")
+    String password;
+
+    @Value("${redisson.database:}")
+    int database;
+
+    @Bean
+    @ConditionalOnMissingBean(RedissonClient.class)
+    public RedissonClient createRedisson() {
+        Config config = new Config();
+        SingleServerConfig serverConfig = config.useSingleServer();
+        serverConfig.setAddress(address);
+        serverConfig.setTimeout(timeout);
+        serverConfig.setConnectTimeout(timeout);
+        serverConfig.setConnectionPoolSize(maxPoolSize);
+        serverConfig.setConnectionMinimumIdleSize(minIdleSize);
+        serverConfig.setDatabase(database);
+
+        if (!StringUtils.isBlank(password)) {
+            serverConfig.setPassword(password);
         }
+        RedissonClient redisson = Redisson.create(config);
+        return redisson;
     }
 }
