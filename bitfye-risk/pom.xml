@@ -53,6 +53,10 @@
         </dependency>
         <dependency>
             <groupId>com.bitfye</groupId>
+            <artifactId>common-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.bitfye</groupId>
             <artifactId>common-model</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>

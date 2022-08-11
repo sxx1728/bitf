@@ -63,6 +63,10 @@
             <artifactId>common-snow-id</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.bitfye</groupId>
+            <artifactId>common-client</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.CoboCustody</groupId>
             <artifactId>cobo-java-api</artifactId>
         </dependency>

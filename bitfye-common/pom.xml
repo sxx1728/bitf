@@ -17,6 +17,7 @@
         <module>common-base</module>
         <module>common-snow-id</module>
         <module>common-model</module>
+        <module>common-client</module>
     </modules>
 
 </project>
