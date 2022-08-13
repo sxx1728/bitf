@@ -73,8 +73,8 @@ bitfye:
   security:
     risk:
       host: http://127.0.0.1:8081
-      appId: ctbergeVKRxpqxIJeaX
-      appKey: oA44ASXwer3MJygZkxPqR666Zc3SaVq5LkfZM9ouer
+      appid: ctbergeVKRxpqxIJeaX
+      appkey: oA44ASXwer3MJygZkxPqR666Zc3SaVq5LkfZM9ouer
       url:
         withdrawVerify: /v1/risk/withdrawVerify
 

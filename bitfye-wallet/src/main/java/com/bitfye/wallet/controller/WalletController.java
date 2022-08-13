@@ -2,6 +2,7 @@ package com.bitfye.wallet.controller;
 
 import com.bitfye.common.model.vo.NewAddressReqVo;
 import com.bitfye.common.model.vo.WithdrawReqVo;
+import com.bitfye.wallet.aop.SignVerify;
 import com.bitfye.wallet.cobo.CoboClient;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.Address;
@@ -30,6 +31,7 @@ public class WalletController {
     @Autowired
     private CoboClient coboClient;
 
+    @SignVerify
     @ApiOperation("生成充币地址")
     @PostMapping("new_address")
     public ApiResponse<Address> newAddress(@Validated @RequestBody NewAddressReqVo reqVo, HttpServletRequest request) {

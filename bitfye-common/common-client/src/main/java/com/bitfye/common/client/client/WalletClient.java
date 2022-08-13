@@ -32,20 +32,20 @@ import java.util.Set;
 @Component
 public class WalletClient {
 
-    @Value("${bitfye.security.wallet.host:}")
+    @Value("${bitfye.security.signatures.wallet.host:}")
     private String walletHost;
-    @Value("${bitfye.security.wallet.appId:}")
+    @Value("${bitfye.security.signatures.wallet.appid:}")
     private String walletAppId;
-    @Value("${bitfye.security.wallet.appKey:}")
+    @Value("${bitfye.security.signatures.wallet.appkey:}")
     private String walletAppKey;
-    @Value("${bitfye.security.wallet.url.createAddress}")
+    @Value("${bitfye.security.signatures.wallet.url.createAddress}")
     private String createAddress;
 
     @Autowired
     private HttpClientSupport httpClientSupport;
-    @Value("${bitfye.client.risk.retry-on-code.retry-time:3}")
+    @Value("${bitfye.client.wallet.retry-on-code.retry-time:3}")
     private int retryTimeOnCode;
-    @Value("#{'${bitfye.client.risk.retry-on-code.response-codes:504}'.split(',')}")
+    @Value("#{'${bitfye.client.wallet.retry-on-code.response-codes:504}'.split(',')}")
     private Set<Integer> retryResponseCodes;
     @Autowired
     @Qualifier("riskHttpConfig")

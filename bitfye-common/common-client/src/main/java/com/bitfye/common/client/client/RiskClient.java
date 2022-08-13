@@ -33,15 +33,15 @@ import java.util.Set;
 @Component
 public class RiskClient {
 
-    @Value("${bitfye.security.risk.host:}")
+    @Value("${bitfye.security.signatures.risk.host:}")
     private String riskHost;
-    @Value("${bitfye.security.risk.appId:}")
+    @Value("${bitfye.security.signatures.risk.appid:}")
     private String riskAppId;
-    @Value("${bitfye.security.risk.appKey:}")
+    @Value("${bitfye.security.signatures.risk.appkey:}")
     private String riskAppKey;
-    @Value("${bitfye.security.risk.url.withdrawVerify}")
+    @Value("${bitfye.security.signatures.risk.url.withdrawVerify}")
     private String withdrawVerify;
-    @Value("${bitfye.security.risk.url.addressVerify}")
+    @Value("${bitfye.security.signatures.risk.url.addressVerify}")
     private String addressVerify;
 
     @Autowired
