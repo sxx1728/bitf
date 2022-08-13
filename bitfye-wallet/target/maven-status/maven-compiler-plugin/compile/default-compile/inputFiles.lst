@@ -1,6 +1,8 @@
+/Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-wallet/src/main/java/com/bitfye/wallet/aop/SignAspect.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-wallet/src/main/java/com/bitfye/wallet/config/RedissonConfig.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-wallet/src/main/java/com/bitfye/wallet/config/CustomBigDecimalSerializer.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-wallet/src/main/java/com/bitfye/wallet/WalletApplication.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-wallet/src/main/java/com/bitfye/wallet/cobo/CoboClient.java
+/Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-wallet/src/main/java/com/bitfye/wallet/aop/SignVerify.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-wallet/src/main/java/com/bitfye/wallet/config/ThreadPoolExecutorConfig.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-wallet/src/main/java/com/bitfye/wallet/controller/WalletController.java

@@ -4,7 +4,8 @@ server:
 spring:
   application:
     name: bitfye-risk
-  profiles: dev
+  profiles:
+    active: dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/bitfye?allowMultiQueries=true&useSSL=false

@@ -71,12 +71,13 @@ bitfye:
   generator:
     prefix: bitfye-wallet
   security:
-    risk:
-      host: http://127.0.0.1:8081
-      appid: ctbergeVKRxpqxIJeaX
-      appkey: oA44ASXwer3MJygZkxPqR666Zc3SaVq5LkfZM9ouer
-      url:
-        withdrawVerify: /v1/risk/withdrawVerify
+    signatures:
+      risk:
+        host: http://127.0.0.1:8081
+        appid: ctbergeVKRxpqxIJeaX
+        appkey: oA44ASXwer3MJygZkxPqR666Zc3SaVq5LkfZM9ouer
+        url:
+          withdrawVerify: /v1/risk/withdrawVerify
 
 redisson:
   address: redis://127.0.0.1:6379
