@@ -1,8 +1,0 @@
-com/bitfye/wallet/config/RedissonConfig.class
-com/bitfye/wallet/aop/SignVerify.class
-com/bitfye/wallet/cobo/CoboClient.class
-com/bitfye/wallet/controller/WalletController.class
-com/bitfye/wallet/config/CustomBigDecimalSerializer.class
-com/bitfye/wallet/WalletApplication.class
-com/bitfye/wallet/aop/SignAspect.class
-com/bitfye/wallet/config/ThreadPoolExecutorConfig.class

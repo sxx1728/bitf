@@ -1,5 +1,0 @@
-com/bitfye/risk/controller/RiskController.class
-com/bitfye/risk/config/ThreadPoolExecutorConfig.class
-com/bitfye/risk/RiskApplication.class
-com/bitfye/risk/cobo/CoboClient.class
-com/bitfye/risk/config/RedissonConfig.class
