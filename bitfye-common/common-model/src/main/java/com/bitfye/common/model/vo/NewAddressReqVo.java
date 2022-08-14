@@ -6,4 +6,6 @@ import lombok.Data;
 public class NewAddressReqVo {
 
     private String coin;
+
+    private Long uid;
 }

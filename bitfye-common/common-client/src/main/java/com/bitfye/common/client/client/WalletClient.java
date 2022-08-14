@@ -73,9 +73,11 @@ public class WalletClient {
      * @param coin coin
      * @return
      */
-    public ResultVo<Boolean> createAddress(String coin) {
-        Map<String, Object> paramMap = ImmutableMap.<String, Object>builder().
-                put("coin", coin).build();
+    public ResultVo<Boolean> createAddress(String coin, Long uid) {
+        Map<String, Object> paramMap = ImmutableMap.<String, Object>builder()
+                .put("coin", coin)
+                .put("uid", uid)
+                .build();
 
         val response = walletCreateAddressApi.request().doPost(paramMap);
         ResultVo<Boolean> resultVo = httpClientSupport.handleRiskResponse(response);

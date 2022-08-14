@@ -40,7 +40,7 @@ bitfye:
         appid: 1OTLHR7UIDDFC1QAG5YG
         appkey: Mk1Oqf7buibn5OQPPLw6OgWe9PyqbmRrqm20Z2lG
         url:
-          createAddress: /v1/wallet/new_address
+          createAddress: /v1/wallet/inner/new_address
       risk:
         appid: ctbergeVKRxpqxIJeaX
         appkey: oA44ASXwer3MJygZkxPqR666Zc3SaVq5LkfZM9ouer

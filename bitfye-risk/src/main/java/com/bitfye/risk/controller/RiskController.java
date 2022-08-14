@@ -30,7 +30,7 @@ public class RiskController {
     @ApiOperation("生成充币地址-调用钱包服务")
     @PostMapping("createAddress")
     public ResultVo createAddress(@Validated @RequestBody NewAddressReqVo reqVo) {
-        ResultVo<Boolean> result = walletClient.createAddress(reqVo.getCoin());
+        ResultVo<Boolean> result = walletClient.createAddress(reqVo.getCoin(), reqVo.getUid());
         if(result.getSuccess()) {
             return ResultVo.buildSuccess();
         } else {

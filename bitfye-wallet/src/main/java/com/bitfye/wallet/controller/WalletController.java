@@ -2,7 +2,6 @@ package com.bitfye.wallet.controller;
 
 import com.bitfye.common.model.vo.NewAddressReqVo;
 import com.bitfye.common.model.vo.WithdrawReqVo;
-import com.bitfye.wallet.aop.SignAndVerify;
 import com.bitfye.wallet.cobo.CoboClient;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.Address;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author ming.jia
