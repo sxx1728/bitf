@@ -6,6 +6,7 @@ import com.bitfye.common.client.HttpClientSupport;
 import com.bitfye.common.client.http.*;
 import com.bitfye.common.client.util.JsonUtil;
 import com.bitfye.common.model.vo.BitfyeResponse;
+import com.bitfye.common.model.vo.CreateAddressResVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.common.collect.ImmutableMap;
@@ -51,7 +52,7 @@ public class WalletClient {
     @Qualifier("riskHttpConfig")
     private HttpClientConfig httpClientConfig;
 
-    private HttpApi<BitfyeResponse<Boolean>> walletCreateAddressApi;
+    private HttpApi<BitfyeResponse<CreateAddressResVo>> walletCreateAddressApi;
 
     @PostConstruct
     void init() {
@@ -63,7 +64,7 @@ public class WalletClient {
         Signature walletSignature = new Signature(walletAppId, walletAppKey);
 
         //风控系统-提币确认
-        walletCreateAddressApi = retryOnCodeHttpApiBuilder.response(BitfyeResponse.type(Boolean.class))
+        walletCreateAddressApi = retryOnCodeHttpApiBuilder.response(BitfyeResponse.type(CreateAddressResVo.class))
                 .buildWithSignature(walletHost + createAddress, walletSignature);
 
     }
@@ -73,14 +74,14 @@ public class WalletClient {
      * @param coin coin
      * @return
      */
-    public ResultVo<Boolean> createAddress(String coin, Long uid) {
+    public ResultVo<CreateAddressResVo> createAddress(String coin, Long uid) {
         Map<String, Object> paramMap = ImmutableMap.<String, Object>builder()
                 .put("coin", coin)
                 .put("uid", uid)
                 .build();
 
         val response = walletCreateAddressApi.request().doPost(paramMap);
-        ResultVo<Boolean> resultVo = httpClientSupport.handleRiskResponse(response);
+        ResultVo<CreateAddressResVo> resultVo = httpClientSupport.handleWalletResponse(response);
         log.info("wallet req:{} response:{}", JSON.toJSONString(paramMap), JSON.toJSONString(resultVo));
         return resultVo;
     }

@@ -1,8 +1,10 @@
 package com.bitfye.wallet.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.bitfye.common.base.util.ResultVo;
 import com.bitfye.common.mapper.DepositAddressMapper;
 import com.bitfye.common.model.po.DepositAddressPo;
+import com.bitfye.common.model.vo.CreateAddressResVo;
 import com.bitfye.common.model.vo.NewAddressReqVo;
 import com.bitfye.wallet.aop.SignAndVerify;
 import com.bitfye.wallet.cobo.CoboClient;
@@ -59,8 +61,14 @@ public class InnerWalletController {
                 .build();
 
         Boolean insertResult = depositAddressService.save(depositAddressPo);
+
+        CreateAddressResVo createAddressResVo = CreateAddressResVo.builder()
+                .address(result.getResult().getAddress())
+                .coin(result.getResult().getCoin())
+                .build();
+
         if(insertResult) {
-            return ResultVo.buildSuccess(result.getResult().getAddress());
+            return ResultVo.buildSuccess(() -> createAddressResVo);
         } else {
             return ResultVo.buildFailse();
         }

@@ -33,6 +33,10 @@ cobo:
 bitfye:
   generator:
     prefix: bitfye-risk
+  client:
+    risk:
+      http:
+        connectTimeout: 10000
   security:
     signatures:
       wallet:
