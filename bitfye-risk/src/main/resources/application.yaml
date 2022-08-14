@@ -41,6 +41,9 @@ bitfye:
         appkey: Mk1Oqf7buibn5OQPPLw6OgWe9PyqbmRrqm20Z2lG
         url:
           createAddress: /v1/wallet/new_address
+      risk:
+        appid: ctbergeVKRxpqxIJeaX
+        appkey: oA44ASXwer3MJygZkxPqR666Zc3SaVq5LkfZM9ouer
 
 redisson:
   address: redis://127.0.0.1:6379

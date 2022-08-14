@@ -1,7 +1,6 @@
 package com.bitfye.wallet.controller;
 
 import com.bitfye.common.model.vo.NewAddressReqVo;
-import com.bitfye.common.model.vo.WithdrawReqVo;
 import com.bitfye.wallet.aop.SignAndVerify;
 import com.bitfye.wallet.cobo.CoboClient;
 import com.cobo.custody.api.client.domain.ApiResponse;
@@ -20,28 +19,27 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author ming.jia
  * @version 1.0
- * @description 钱包系统对外API
- * @date 2022/8/5 下午9:32
+ * @description 内部接口需要进行签名验证
+ * @date 2022/8/14 上午10:59
  **/
 @RestController
-@RequestMapping("/v1/wallet/")
+@RequestMapping("/v1/wallet/inner/")
 @Slf4j
-public class WalletController {
+public class InnerWalletController {
 
     @Autowired
     private CoboClient coboClient;
 
-    @ApiOperation("提币")
-    @PostMapping("withdraw")
-    public ApiResponse<String> withdraw(@Validated @RequestBody WithdrawReqVo reqVo) {
-        ApiResponse<String> result = coboClient.submitWithdrawRequest(reqVo);
-        return result;
-    }
+    @SignAndVerify(innerService = true)
+    @ApiOperation("生成充币地址")
+    @PostMapping("new_address")
+    public ApiResponse<Address> newAddress(@Validated @RequestBody NewAddressReqVo reqVo, HttpServletRequest request) {
+        ApiResponse<Address> result = coboClient.getNewDepositAddress(reqVo.getCoin());
+        log.info("coin:{} address:{}", result.getResult().getCoin(), result.getResult().getAddress());
+        ApiResponse<Boolean> result1 = coboClient.verifyValidAddress(result.getResult().getCoin(), result.getResult().getAddress());
+        log.info("newAddress result1:{}", result1);
 
-    @ApiOperation("充值")
-    @PostMapping("deposit")
-    public ApiResponse<Address> deposit(@Validated @RequestBody NewAddressReqVo reqVo) {
-        ApiResponse<Address> result = coboClient.batchNewDepositAddress(reqVo.getCoin());
+        //TODO 插入数据库
         return result;
     }
 }

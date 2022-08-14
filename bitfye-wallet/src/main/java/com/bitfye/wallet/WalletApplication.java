@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @date 2022/8/5 下午9:29
  **/
 @SpringBootApplication
-@ComponentScan(value = "com.bitfye.*")
+@ComponentScan({"com.bitfye.*"})
 public class WalletApplication {
     public static void main(String[] args) {
         SpringApplication.run(WalletApplication.class, args);

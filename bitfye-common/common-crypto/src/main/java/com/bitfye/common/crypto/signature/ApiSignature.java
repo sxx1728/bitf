@@ -23,7 +23,6 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Component
 public class ApiSignature {
     final Logger log = LoggerFactory.getLogger(this.getClass());
     static final DateTimeFormatter DT_FORMAT = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ss");
