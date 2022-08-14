@@ -1,11 +1,10 @@
 package com.bitfye.common.crypto.signature;
 
 import com.bitfye.common.crypto.http.ErrorHandler;
+import com.bitfye.common.crypto.signature.SignatureConfigs.SignatureConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,10 +46,10 @@ public class SignatureFilter implements Filter {
             Iterator var2 = this.signatureConfigs.getSignatures().entrySet().iterator();
 
             while(var2.hasNext()) {
-                Map.Entry<String, SignatureConfigs.SignatureConfig> entry = (Map.Entry)var2.next();
+                Map.Entry<String, SignatureConfig> entry = (Map.Entry)var2.next();
                 String appName = (String)entry.getKey();
-                String appId = ((SignatureConfigs.SignatureConfig)entry.getValue()).getAppid();
-                String appKey = ((SignatureConfigs.SignatureConfig)entry.getValue()).getAppkey();
+                String appId = ((SignatureConfig)entry.getValue()).getAppid();
+                String appKey = ((SignatureConfig)entry.getValue()).getAppkey();
                 this.log.info("Found app: {}, appid={}", appName, appId);
                 apps.put(appId, appKey);
             }

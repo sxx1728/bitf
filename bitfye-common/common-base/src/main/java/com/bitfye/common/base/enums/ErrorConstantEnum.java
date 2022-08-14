@@ -14,7 +14,7 @@ public enum ErrorConstantEnum {
     SUCCESS(200, "请求成功", "The request is successful."),
     FAILURE(500,"系统繁忙，请稍后再试", "System busy, please try again later."),
     REQUEST_FREQUENTLY(501, "请求频繁", "The request is frequent."),
-
+    SIGN_VERIFY_FAILED(502, "验签失败"),
     ;
 
     private Integer errCode;
