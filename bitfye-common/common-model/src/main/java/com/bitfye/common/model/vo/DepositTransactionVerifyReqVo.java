@@ -5,8 +5,10 @@ import lombok.Data;
 @Data
 public class DepositTransactionVerifyReqVo {
 
-    private String id;
+    private String transactionId;
+    private String coin;
     private String address;
-    private String absAmount;
+    private String memo;
+    private String amount;
 
 }

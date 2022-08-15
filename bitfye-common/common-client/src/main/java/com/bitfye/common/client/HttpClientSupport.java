@@ -66,6 +66,31 @@ public class HttpClientSupport {
         }
     }
 
+    public <T> ResultVo<T> handleUcenterResponse(HttpResponse<BitfyeResponse<T>> resp, Boolean isLog) {
+        BitfyeResponse<T> response = resp.getBody();
+        if(isLog){
+            log.info("调用Ucenter服务结果 resp={}", JsonUtil.writeValue(response));
+        }
+
+        if (response != null && response.isSuccess()) {
+            return ResultVo.buildSuccess(()->response.getData());
+        }
+
+        String errorCode, errorMessage = null;
+        if (response != null) {
+            errorCode = "wallet." + response.getCode();
+            errorMessage = response.getMessage()==null ? "null" : response.getMessage();
+            return ResultVo.buildFailse().setData(ImmutableMap.of("errorCode",errorCode,"errorMessage",errorMessage)).setMessage(errorMessage);
+        } else {
+            errorCode = getErrorCode(resp);
+            return ResultVo.buildFailse().setData(ImmutableMap.of("errorCode",errorCode));
+        }
+    }
+
+    public <T> ResultVo<T> handleUcenterResponse(HttpResponse<BitfyeResponse<T>> resp) {
+        return handleUcenterResponse( resp,true);
+    }
+
     public <T> ResultVo<T> handleWalletResponse(HttpResponse<BitfyeResponse<T>> resp) {
         return handleWalletResponse( resp,true);
     }
