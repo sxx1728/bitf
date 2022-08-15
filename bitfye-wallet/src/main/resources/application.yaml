@@ -40,6 +40,8 @@ server:
   port: 8082
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: bitfye-wallet
   profiles:
@@ -71,6 +73,10 @@ cobo:
 bitfye:
   generator:
     prefix: bitfye-wallet
+  client:
+    wallet:
+      http:
+        connectTimeout: 10000
   security:
     signatures:
       risk:
@@ -89,3 +95,24 @@ redisson:
 
 logging:
   config: "classpath:logback-spring.xml"
+
+mybatis-plus:
+  mapper-locations: classpath*:/com/bitfye/common/mapper/impl/*Mapper.xml
+  typeAliasesPackage: com.bitfye.common.model
+  type-enums-package: com.bitfye.common.base.enums
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: false
+    refresh-mapper: true
+    db-config:
+      table-prefix: "t_"
+      id-type: auto
+      table-underline: true
+      column-format: "f_%s"
+  configuration:
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

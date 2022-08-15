@@ -41,7 +41,7 @@ public class HttpClientSupport {
     }
 
     public <T> ResultVo<T> handleRiskResponse(HttpResponse<BitfyeResponse<T>> resp) {
-        return handleRiskResponse( resp,true);
+        return handleRiskResponse(resp,true);
     }
 
 

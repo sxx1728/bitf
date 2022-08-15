@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2022/8/5 下午21:09
  **/
 @RestController
-@Slf4j
 @RequestMapping("/v1/risk/")
+@Slf4j
 public class RiskController {
 
     private static final String TRANSACTION_STATUS_SUCCESS = "success";

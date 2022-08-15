@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bitfye.common.mapper.DepositAddressMapper">
+
+    <resultMap id="BaseResultMap" type="com.bitfye.common.model.po.DepositAddressPo">
+        <id column="f_id" property="id" />
+        <result column="f_uid" property="uid" />
+        <result column="f_coin" property="coin"/>
+        <result column="f_address" property="address"/>
+        <result column="f_created_at" property="createdAt" />
+        <result column="f_updated_at" property="updatedAt" />
+    </resultMap>
+
+
+
+
+</mapper>

@@ -14,6 +14,7 @@ import java.util.Map;
  */
 @Configuration
 public class RiskConfig {
+
     @Bean("apiSignature")
     public ApiSignature apiSignature(@Value("${bitfye.security.signatures.risk.appid}") String appKey,
                                      @Value("${bitfye.security.signatures.risk.appkey}") String appSecretKey) {
