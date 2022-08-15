@@ -10,7 +10,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/bitfye?allowMultiQueries=true&useSSL=false
     username: root
-    password: 123456
+    password: 12345678
     # 初始化，最小，最大连接数
     initialSize: 20
     minIdle: 20
@@ -46,8 +46,12 @@ bitfye:
         url:
           createAddress: /v1/wallet/inner/new_address
       risk:
+        host: http://127.0.0.1:8081
         appid: ctbergeVKRxpqxIJeaX
         appkey: oA44ASXwer3MJygZkxPqR666Zc3SaVq5LkfZM9ouer
+        url:
+          getWithdrawReview: /v1/risk/inner/get_withdraw_review
+          getAccountBalance: /v1/risk/inner/get_account_balance
 
 redisson:
   address: redis://127.0.0.1:6379
@@ -56,4 +60,5 @@ redisson:
 
 logging:
   config: "classpath:logback-spring.xml"
+
 

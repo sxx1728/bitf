@@ -2,9 +2,11 @@
 /Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/CreateAddressResVo.java
 /Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/DepositAddressVerifyReqVo.java
 /Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/po/DepositAddressPo.java
+/Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/GetWithdrawManualReviewResVo.java
 /Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/dto/WithDrawDto.java
 /Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/po/WithDrawPo.java
 /Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/BitfyeResponse.java
+/Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/GetAccountBalanceResVo.java
 /Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/WithdrawReqVo.java
 /Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/WithDrawVerifyReqVo.java
 /Users/bobsui/Desktop/private/bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/NewAddressReqVo.java

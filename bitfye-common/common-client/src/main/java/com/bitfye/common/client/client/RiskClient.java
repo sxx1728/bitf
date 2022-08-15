@@ -6,7 +6,6 @@ import com.bitfye.common.client.HttpClientSupport;
 import com.bitfye.common.client.http.*;
 import com.bitfye.common.client.util.JsonUtil;
 import com.bitfye.common.model.vo.BitfyeResponse;
-import com.bitfye.common.model.vo.WithdrawReqVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.google.common.collect.ImmutableMap;
@@ -39,10 +38,14 @@ public class RiskClient {
     private String riskAppId;
     @Value("${bitfye.security.signatures.risk.appkey:}")
     private String riskAppKey;
-    @Value("${bitfye.security.signatures.risk.url.withdrawVerify}")
-    private String withdrawVerify;
-    @Value("${bitfye.security.signatures.risk.url.addressVerify}")
-    private String addressVerify;
+    @Value("${bitfye.security.signatures.risk.url.withdrawVerifyUrl}")
+    private String withdrawVerifyUrl;
+
+    @Value("${bitfye.security.signatures.risk.url.depositAddressVerifyUrl}")
+    private String depositAddressVerifyUrl;
+
+    @Value("${bitfye.security.signatures.risk.url.depositTransactionVerifyUrl}")
+    private String depositTransactionVerifyUrl;
 
     @Autowired
     private HttpClientSupport httpClientSupport;
@@ -55,6 +58,8 @@ public class RiskClient {
     private HttpClientConfig httpClientConfig;
 
     private HttpApi<BitfyeResponse<Boolean>> riskWithdrawVerifyApi;
+    private HttpApi<BitfyeResponse<Boolean>> riskDepositAddressVerifyApi;
+    private HttpApi<BitfyeResponse<Boolean>> riskDepositTransactionVerifyApi;
 
     @PostConstruct
     void init() {
@@ -67,33 +72,78 @@ public class RiskClient {
 
         //风控系统-提币确认
         riskWithdrawVerifyApi = retryOnCodeHttpApiBuilder.response(BitfyeResponse.type(Boolean.class))
-                .buildWithSignature(riskHost + withdrawVerify, riskSignature);
+                .buildWithSignature(riskHost + withdrawVerifyUrl, riskSignature);
+
+        riskDepositAddressVerifyApi = retryOnCodeHttpApiBuilder.response(BitfyeResponse.type(Boolean.class))
+                .buildWithSignature(riskHost + depositAddressVerifyUrl, riskSignature);
+
+        riskDepositTransactionVerifyApi = retryOnCodeHttpApiBuilder.response(BitfyeResponse.type(Boolean.class))
+                .buildWithSignature(riskHost + depositTransactionVerifyUrl, riskSignature);
 
 
     }
 
     /**
      * 提币接口-风控服务确认 withdrawVerify
-     * @param req String coin,
-     *            String requestId,
+     * @param req String uid,
+     *            String coin,
      *            String address,
-     *            BigInteger amount,
+     *            String amount,
      *            String memo,
-     *            String forceExternal,
-     *            String forceInternal
      * @return
      */
-    public ResultVo<Boolean> withdrawVerify(WithdrawReqVo req) {
+    public ResultVo<Boolean> withdrawVerify( String uid, String coin, String address, String memo, String amount) {
         Map<String, Object> paramMap = ImmutableMap.<String, Object>builder().
-                put("coin", req.getCoin()).
-                put("requestId", req.getRequestId()).
-                put("address", req.getAddress()).
-                put("amount", req.getAmount()).
-                put("memo", req.getMemo()).
-                put("forceExternal", req.getForceExternal()).
-                put("forceInternal", req.getForceInternal()).build();
+                put("uid", uid).
+                put("coin", coin).
+                put("address", address).
+                put("amount", amount).
+                put("memo", memo).build();
 
         val response = riskWithdrawVerifyApi.request().doPost(paramMap);
+        ResultVo<Boolean> resultVo = httpClientSupport.handleRiskResponse(response);
+        log.info("risk req:{} response:{}", JSON.toJSONString(paramMap), JSON.toJSONString(resultVo));
+        return resultVo;
+    }
+
+    /**
+     * 提币接口-风控服务确认 depositAddressVerify
+     * @param req String uid,
+     *            String coin,
+     *            String address,
+     *            String amount,
+     *            String memo,
+     * @return
+     */
+    public ResultVo<Boolean> depositAddressVerify( String coin, String address) {
+        Map<String, Object> paramMap = ImmutableMap.<String, Object>builder().
+                put("coin", coin).
+                put("address", address).build();
+
+        val response = riskDepositAddressVerifyApi.request().doPost(paramMap);
+        ResultVo<Boolean> resultVo = httpClientSupport.handleRiskResponse(response);
+        log.info("risk req:{} response:{}", JSON.toJSONString(paramMap), JSON.toJSONString(resultVo));
+        return resultVo;
+    }
+
+    /**
+     * 提币接口-风控服务确认 depositAddressVerify
+     * @param req String uid,
+     *            String coin,
+     *            String address,
+     *            String amount,
+     *            String memo,
+     * @return
+     */
+    public ResultVo<Boolean> depositTransactionVerify(String transactionId, String coin, String address, String memo, String amount) {
+        Map<String, Object> paramMap = ImmutableMap.<String, Object>builder().
+                put("transactionId", transactionId).
+                put("coin", coin).
+                put("address", address).
+                put("memo", memo).
+                put("amount", amount).build();
+
+        val response = riskDepositTransactionVerifyApi.request().doPost(paramMap);
         ResultVo<Boolean> resultVo = httpClientSupport.handleRiskResponse(response);
         log.info("risk req:{} response:{}", JSON.toJSONString(paramMap), JSON.toJSONString(resultVo));
         return resultVo;
