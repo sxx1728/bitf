@@ -256,7 +256,7 @@ public class CoboClient {
         ApiResponse<String> res = client.withdraw(reqVo.getCoin(),
                 reqVo.getRequestId(),
                 reqVo.getAddress(),
-                reqVo.getAmount(),
+                new BigInteger(reqVo.getAmount()),
                 reqVo.getMemo(),
                 reqVo.getForceExternal(),
                 reqVo.getForceInternal());

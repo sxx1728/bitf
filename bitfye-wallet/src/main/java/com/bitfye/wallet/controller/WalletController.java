@@ -2,6 +2,7 @@ package com.bitfye.wallet.controller;
 
 import com.bitfye.common.model.vo.NewAddressReqVo;
 import com.bitfye.common.model.vo.WithdrawReqVo;
+import com.bitfye.common.snow.id.SnowFlakeIdGenerator;
 import com.bitfye.wallet.cobo.CoboClient;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.Address;
@@ -28,9 +29,14 @@ public class WalletController {
     @Autowired
     private CoboClient coboClient;
 
+    @Autowired
+    private SnowFlakeIdGenerator snowFlakeIdGenerator;
+
     @ApiOperation("提币")
     @PostMapping("withdraw")
     public ApiResponse<String> withdraw(@Validated @RequestBody WithdrawReqVo reqVo) {
+        Long resultId = snowFlakeIdGenerator.nextId();
+        reqVo.setRequestId(resultId.toString());
         ApiResponse<String> result = coboClient.submitWithdrawRequest(reqVo);
         return result;
     }
