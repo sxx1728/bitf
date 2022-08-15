@@ -5,6 +5,8 @@ import com.bitfye.common.base.util.ResultVo;
 import com.bitfye.common.client.client.WalletClient;
 import com.bitfye.common.model.vo.DepositAddressVerifyReqVo;
 import com.bitfye.common.model.vo.DepositTransactionVerifyReqVo;
+import com.bitfye.common.model.vo.WithDrawVerifyReqVo;
+import com.bitfye.risk.aop.SignAndVerify;
 import com.bitfye.risk.cobo.CoboClient;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.Address;
@@ -37,6 +39,7 @@ public class RiskController {
     @Autowired
     private CoboClient coboClient;
 
+    @SignAndVerify(innerService = true)
     @ApiOperation("充币地址二次确认，调用钱包服务")
     @PostMapping("depositAddressVerify")
     public ResultVo depositAddressVerify(@Validated @RequestBody DepositAddressVerifyReqVo reqVo) {
@@ -50,6 +53,7 @@ public class RiskController {
         }
     }
 
+    @SignAndVerify(innerService = true)
     @ApiOperation("充币交易二次确认，调用钱包服务")
     @PostMapping("depositTransactionVerify")
     public ResultVo depositTransactionVerify(@Validated @RequestBody DepositTransactionVerifyReqVo reqVo) {
@@ -80,9 +84,10 @@ public class RiskController {
     }
 
 
+    @SignAndVerify(innerService = true)
     @ApiOperation("提币二次确认，调用业务系统服务")
     @PostMapping("depositAddressVerify")
-    public ResultVo withdrawVerify(@Validated @RequestBody DepositAddressVerifyReqVo reqVo) {
+    public ResultVo withdrawVerify(@Validated @RequestBody WithDrawVerifyReqVo reqVo) {
 
         ApiResponse<Address> response = coboClient.verifyDepositAddress(reqVo.getCoin(), reqVo.getAddress());
 

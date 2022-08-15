@@ -8,9 +8,13 @@ import java.math.BigInteger;
 @Data
 public class WithdrawReqVo {
 
+    private String requestId;
+
+    //check the user for risk contrller
+    private String uid;
+
     private String coin;
 
-    private String requestId;
 
     private String address;
 
