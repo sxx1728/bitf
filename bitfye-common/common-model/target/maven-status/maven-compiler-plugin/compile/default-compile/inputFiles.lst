@@ -1,6 +1,10 @@
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/BitfyeResponse.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/po/DepositAddressPo.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/po/WithDrawPo.java
+/Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/DepositTransactionVerifyReqVo.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/WithdrawReqVo.java
+/Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/CreateAddressResVo.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/dto/WithDrawDto.java
 /Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/NewAddressReqVo.java
+/Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/WithDrawVerifyReqVo.java
+/Users/jiaming/workspaces/workspace_bitfye/bitf/bitfye-common/common-model/src/main/java/com/bitfye/common/model/vo/DepositAddressVerifyReqVo.java

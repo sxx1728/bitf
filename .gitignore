@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+**/target/
+
 ### STS ###
 .apt_generated
 .classpath
@@ -39,3 +41,4 @@ LOG_FILE_IS_UNDEFINED
 
 .arcconfig
 .DS_Stores
+.DS_Store
